@@ -1,0 +1,203 @@
+{
+    "products": [
+
+           {
+               "name": "Black Corset",
+               "description": "Cropped corset in woven fabric with a sheen. Boning at front and back, hook-and-eye fastening at front, and a concealed zip at back. Lined.",
+               "brand": "Brand Name",
+               "category": "womens",
+               "tags": ["corset", "women", "black", "fashion"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 100
+               },
+               "originalPrice": {
+                   "amount": null,
+                   "currency": "USD"
+               },
+               "discount": 0,
+               "images": ["/images/top1.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 50
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "White Corset",
+               "description": "Cropped white corset in woven fabric with a sheen. Boning at front and back, hook-and-eye fastening at front, and a concealed zip at back. Lined.",
+               "brand": "Brand Name",
+               "category": "womens",
+               "tags": ["corset", "women", "white", "fashion"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 200
+               },
+               "originalPrice": {
+                   "amount": null,
+                   "currency": "USD"
+               },
+               "discount": 0,
+               "images": ["/images/top2.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 40
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "Flower shirt",
+               "description": "Purple flower shirt in woven fabric with a sheen. Light material, full sleeve shirt with small flowers and details everywhere.",
+               "brand": "Brand Name",
+               "category": "womens",
+               "tags": ["shirt", "flower", "women", "purple"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 300
+               },
+               "originalPrice": {
+                   "amount": null,
+                   "currency": "USD"
+               },
+               "discount": 0,
+               "images": ["/images/top3.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 30
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "Beige shirt",
+               "description": "Beige shirt with long arms and a high neck. The shirt is made of a soft material and has a nice fit. Open back with stripes.",
+               "brand": "Brand Name",
+               "category": "womens",
+               "tags": ["shirt", "beige", "women", "fashion"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 400
+               },
+               "originalPrice": {
+                   "amount": null,
+                   "currency": "USD"
+               },
+               "discount": 0,
+               "images": ["/images/top4.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 20
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "Nude sweater",
+               "description": "Handmade sweater in nude color. The sweater is made of a soft material and has a nice fit. Brown buttons in the front.",
+               "brand": "Brand Name",
+               "category": "womens",
+               "tags": ["sweater", "nude", "women", "fashion"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 500
+               },
+               "originalPrice": {
+                   "amount": null,
+                   "currency": "USD"
+               },
+               "discount": 0,
+               "images": ["/images/top5.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 25
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "Green bag",
+               "description": "Green bag with a short strap. The bag is made of leather. It is medium sized.",
+               "brand": "Brand Name",
+               "category": "sale",
+               "tags": ["bag", "green", "leather", "sale"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 120
+               },
+               "originalPrice": {
+                   "amount": 150,
+                   "currency": "USD"
+               },
+               "discount": 20,
+               "images": ["/images/bild3.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 15
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           },
+           {
+               "name": "Black Bag",
+               "description": "Black bag with a long strap. The bag is made of leather. It is medium sized.",
+               "brand": "Brand Name",
+               "category": "sale",
+               "tags": ["bag", "black", "leather", "sale"],
+               "price": {
+                   "currency": "USD",
+                   "amount": 150
+               },
+               "originalPrice": {
+                   "amount": 200,
+                   "currency": "USD"
+               },
+               "discount": 30,
+               "images": ["/images/bild2.webp"],
+               "stock": {
+                   "inStock": true,
+                   "quantity": 10
+               },
+               "reviews": [],
+               "popular": false,
+               "bestSeller": false
+           }
+
+
+    ],
+
+"users": [
+    {
+      "username": "farah",
+      "email": "farah@example.com",
+      "password": "password123"
+    },
+    {
+      "username": "alex",
+      "email": "alex@example.com",
+      "password": "securepass"
+    }
+  ],
+
+"orders": [
+    {
+      "userEmail": "farah@example.com",
+      "products": [
+        {
+          "productName": "Black Bag",
+          "quantity": 1,
+          "price": 150
+        }
+      ],
+      "totalAmount": 150,
+      "orderStatus": "pending"
+    }
+  ]
+}
