@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const cors = require('cors')
 const connectDB = require('./config/db')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
@@ -11,6 +12,13 @@ connectDB()
 const app = express()
 app.use(express.json())
 
+app.use(
+    cors({
+        origin: 'http://localhost:5173', // Allow frontend to communicate with the backend
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    })
+)
 // Routes
 
 
