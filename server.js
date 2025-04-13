@@ -14,7 +14,7 @@ app.use(express.json())
 
 app.use(
     cors({
-        origin: 'http://localhost:5173', // Allow frontend to communicate with the backend
+        origin: 'https://app-fashion-hub.vercel.app', // Allow frontend to communicate with the backend
         methods: ['GET', 'POST'],
         allowedHeaders: ['Content-Type', 'Authorization']
     })
