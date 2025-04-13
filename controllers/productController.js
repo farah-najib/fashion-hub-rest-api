@@ -1,5 +1,5 @@
 const Product = require('../models/Product')
-
+var ObjectId = require('mongoose').Types.ObjectId
 // Get all products
 exports.getProducts = async (req, res) => {
     try {
@@ -13,7 +13,7 @@ exports.getProducts = async (req, res) => {
 // Get single product by ID
 exports.getProductById = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id)
+        const product = await Product.findById(new ObjectId(req.params.id))
         if (!product)
             return res.status(404).json({ message: 'Product not found' })
         res.status(200).json(product)

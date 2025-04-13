@@ -1,4 +1,5 @@
 const Order = require('../models/Order')
+var ObjectId = require('mongoose').Types.ObjectId
 
 // Create an order
 exports.createOrder = async (req, res) => {
@@ -11,6 +12,19 @@ exports.createOrder = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
+
+exports.getOrderById = async(req, res)=>{
+    try{
+        const order = await Order.findById(new ObjectId(req.params.id))
+        res.status(200).json(order)
+
+    } catch(error){
+        res.status(500).json({ message: error.message })
+
+    }
+
+}
+
 
 // Get all orders
 exports.getOrders = async (req, res) => {
