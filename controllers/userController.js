@@ -27,17 +27,13 @@ exports.loginUser = async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user) {
-            console.log('User not found')
             return res.status(404).json({ message: 'User not found' })
         }
 
-        console.log('Found User:', user)
 
         const passwordMatch = await user.comparePassword(password)
-        console.log('Password Match:', passwordMatch)
 
         if (!passwordMatch) {
-            console.log('Password mismatch')
             return res.status(401).json({ message: 'Invalid credentials' })
         }
 
@@ -48,7 +44,6 @@ exports.loginUser = async (req, res) => {
             expiresIn: '1h'
         })
 
-        console.log('Generated Token:', token)
         res.status(200).json({ token })
     } catch (error) {
         console.error('Login Error:', error)

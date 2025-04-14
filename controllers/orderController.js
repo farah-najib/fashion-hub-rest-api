@@ -4,8 +4,6 @@ var ObjectId = require('mongoose').Types.ObjectId
 exports.createOrder = async (req, res) => {
     const { user, products, totalAmount } = req.body
 
-    console.log('order payload:', req.body)
-
     try {
         const order = new Order({ user, products, totalAmount })
         await order.save()

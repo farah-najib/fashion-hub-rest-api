@@ -14,39 +14,39 @@ async function seed() {
     try {
         // Clear existing data
         await Product.deleteMany()
-        await User.deleteMany()
-        await Order.deleteMany()
+        // await User.deleteMany()
+        // await Order.deleteMany()
 
         // Insert products
         const products = await Product.insertMany(data.products)
 
         // Insert users with hashed passwords
-        const users = await Promise.all(
-            data.users.map(async (user) => {
-                const hashedPassword = await bcrypt.hash(user.password, 10)
-                return User.create({ ...user, password: hashedPassword })
-            })
-        )
+        // const users = await Promise.all(
+        //     data.users.map(async (user) => {
+        //         const hashedPassword = await bcrypt.hash(user.password, 10)
+        //         return User.create({ ...user, password: hashedPassword })
+        //     })
+        // )
 
         // Insert orders with mapped product and user IDs
-        for (const order of data.orders) {
-            const user = users.find((u) => u.email === order.userEmail)
-            const orderProducts = order.products.map((op) => {
-                const product = products.find((p) => p.name === op.productName)
-                return {
-                    product: product._id,
-                    quantity: op.quantity,
-                    price: op.price
-                }
-            })
+        // for (const order of data.orders) {
+        //     const user = users.find((u) => u.email === order.userEmail)
+        //     const orderProducts = order.products.map((op) => {
+        //         const product = products.find((p) => p.name === op.productName)
+        //         return {
+        //             product: product._id,
+        //             quantity: op.quantity,
+        //             price: op.price
+        //         }
+        //     })
 
-            await Order.create({
-                user: user._id,
-                products: orderProducts,
-                totalAmount: order.totalAmount,
-                orderStatus: order.orderStatus
-            })
-        }
+        //     await Order.create({
+        //         user: user._id,
+        //         products: orderProducts,
+        //         totalAmount: order.totalAmount,
+        //         orderStatus: order.orderStatus
+        //     })
+        // }
 
         console.log('✅ Seed data inserted successfully')
         mongoose.connection.close()

@@ -29,7 +29,7 @@ app.use('/api/orders', orderRoutes)
 const path = require('path')
 
 // Serve static files (like images)
-app.use('/images', express.static(path.join(__dirname, 'public/images')))
+app.use('/images', express.static(path.join(__dirname, 'public/images/products')))
 
 
 const PORT = process.env.PORT || 5000
