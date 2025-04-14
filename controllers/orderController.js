@@ -1,14 +1,17 @@
 const Order = require('../models/Order')
 var ObjectId = require('mongoose').Types.ObjectId
 
-// Create an order
 exports.createOrder = async (req, res) => {
     const { user, products, totalAmount } = req.body
+
+    console.log('order payload:', req.body)
+
     try {
         const order = new Order({ user, products, totalAmount })
         await order.save()
         res.status(201).json(order)
     } catch (error) {
+        console.error('Error creating order:', error)
         res.status(500).json({ message: error.message })
     }
 }
