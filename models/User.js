@@ -7,12 +7,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true }
 })
 
-// Password hashing before saving the user
-userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next()
-    this.password = await bcrypt.hash(this.password, 10)
-    next()
-})
+
 
 // Password comparison method
 userSchema.methods.comparePassword = async function (password) {
