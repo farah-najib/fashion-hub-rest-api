@@ -5,7 +5,7 @@ const connectDB = require('./config/db')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
 const orderRoutes = require('./routes/orderRoutes')
-
+const { swaggerUi, swaggerDocument } = require('./docs/swagger')
 dotenv.config()
 connectDB()
 
@@ -20,7 +20,8 @@ app.use(
     })
 )
 // Routes
-
+// Swagger UI
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use('/api/user', userRoutes)
 app.use('/api/products', productRoutes)
@@ -32,7 +33,7 @@ const path = require('path')
 app.use('/images', express.static(path.join(__dirname, 'public/images/products')))
 
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })

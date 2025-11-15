@@ -1,0 +1,316 @@
+openapi: 3.0.0
+info:
+  title: FashionHub API
+  version: 1.0.0
+  description: API documentation for FashionHub backend.
+
+servers:
+  - url: http://localhost:5001
+    description: Local server
+  - url: https://your-vercel-domain.vercel.app
+    description: Production server
+
+tags:
+  - name: Users
+  - name: Products
+  - name: Orders
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+
+    UserRegisterInput:
+      type: object
+      required: [username, email, password]
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    UserLoginInput:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        image:
+          type: string
+
+    ProductInput:
+      type: object
+      required: [name, price]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        image:
+          type: string
+
+    Order:
+      type: object
+      properties:
+        _id:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        total:
+          type: number
+        user:
+          type: string
+
+    OrderInput:
+      type: object
+      required: [products, total, user]
+      properties:
+        products:
+          type: array
+          items:
+            type: string
+        total:
+          type: number
+        user:
+          type: string
+
+paths:
+
+  #############################
+  # USERS
+  #############################
+
+  /api/user/register:
+    post:
+      tags: [Users]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterInput'
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /api/user/login:
+    post:
+      tags: [Users]
+      summary: Login user and get JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginInput'
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /api/user/profile:
+    get:
+      tags: [Users]
+      summary: Get logged-in user profile
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /api/user:
+    get:
+      tags: [Users]
+      summary: Get all users
+      responses:
+        "200":
+          description: List of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  #############################
+  # PRODUCTS
+  #############################
+
+  /api/products:
+    get:
+      tags: [Products]
+      summary: Get all products
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+    post:
+      tags: [Products]
+      summary: Create new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        "201":
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+  /api/products/{id}:
+    get:
+      tags: [Products]
+      summary: Get product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+    put:
+      tags: [Products]
+      summary: Update product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        "200":
+          description: Updated product
+
+    delete:
+      tags: [Products]
+      summary: Delete product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Product deleted
+
+  #############################
+  # ORDERS
+  #############################
+
+  /api/orders:
+    post:
+      tags: [Orders]
+      summary: Create new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        "201":
+          description: Order created
+
+  /api/orders/all:
+    get:
+      tags: [Orders]
+      summary: Get all orders
+      responses:
+        "200":
+          description: List of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+
+  /api/orders/{id}:
+    get:
+      tags: [Orders]
+      summary: Get order by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
